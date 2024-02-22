@@ -204,7 +204,7 @@ async def conversation(request_data: ConversationRequest, request: Request, resp
                     ).json()
                 }
                 queue.task_done()
-                if not message.endswith('_Typing…_'):
+                if not (message.endswith(' ...') or message.endswith('hourglass_flowing_sand:')):
                     return
         except asyncio.exceptions.TimeoutError:
             print(f"Key {key} has been forced-teriminated due to timeout over {TIMEOUT_SECONDS} seconds.")
